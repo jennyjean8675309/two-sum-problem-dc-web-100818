@@ -52,22 +52,46 @@ function mergeSort(array){
 
 function merge(array1, array2){
   let sorted = []
-  if (array1.length === 0 && array2.length === 0){
-    debugger;
-    return sorted;
-  } else {
-    if (array1[0] < array2[0]){
-      sorted.push(array1.shift())
-      merge(array1, array2)
-    } else {
-      sorted.push(array2.shift())
-      merge(array1, array2)
-    }
+  let currentMin;
+
+  while (array1.length !== 0 && array2.length !== 0){
+    currentMin = findMinAndRemove(array1, array2)
+    sorted.push(currentMin)
   }
+  return sorted.concat(array1).concat(array2)
 }
 
 function findMinAndRemove(array1, array2){
-  
+  let minArray1 = array1[0]
+  let minArray2 = array2[0]
+
+  if (minArray1 < minArray2){
+    return array1.shift()
+  } else {
+    return array2.shift()
+  }
 }
 
-mergeSort([2, 5, 3, 1, 8, 9])
+function binarySearchTwoSum(array, sum){
+  let tree = buildTree(array)
+
+  //implement a binary search for a matching pair on each number in the array
+
+}
+
+function buildTree(array){
+  let sortedArray = mergeSort(array)
+  let rootNode = { data: sortedArray[0], rightChild: null, leftChild: null }
+  let remainingArray = sortedArray.slice(1)
+
+  remainingArray.forEach(num => {
+    //Here I'll insert each num of the array as a node in the binary tree
+    if (num > rootNode[data] && rootNode[leftChild] === null){
+      rootNode[data] = { data: num, rightChild: null, leftChild: null }
+    } else if (){
+      
+    }
+  })
+}
+
+console.log(binarySearchTwoSum([2, 3, 4, 3, 6, 7], 6))
