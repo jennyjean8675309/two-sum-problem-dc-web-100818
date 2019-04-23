@@ -32,3 +32,42 @@ function bruteForceTwoSum(array, sum){
   let midLength = sumPairs.length / 2
   return sumPairs.slice(0, midLength)
 }
+
+//Big O for brute force - one nested loop - big O(n*2)
+
+//3. other data structures
+//sorting the array using merge sort first
+
+function mergeSort(array){
+  let midLength = array.length / 2
+  let array1 = array.slice(0, midLength)
+  let array2 = array.slice(midLength)
+
+  if (array.length === 1){
+    return array
+  } else {
+    return merge(mergeSort(array1), mergeSort(array2))
+  }
+}
+
+function merge(array1, array2){
+  let sorted = []
+  if (array1.length === 0 && array2.length === 0){
+    debugger;
+    return sorted;
+  } else {
+    if (array1[0] < array2[0]){
+      sorted.push(array1.shift())
+      merge(array1, array2)
+    } else {
+      sorted.push(array2.shift())
+      merge(array1, array2)
+    }
+  }
+}
+
+function findMinAndRemove(array1, array2){
+  
+}
+
+mergeSort([2, 5, 3, 1, 8, 9])
